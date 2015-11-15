@@ -1,0 +1,12 @@
+---
+ferm_packages:
+  - ferm
+
+ferm_directory: /etc/ferm
+
+ferm_service: ferm
+
+ferm_services:
+  - ferm
+ 
+ferm_service_enabled: yes 

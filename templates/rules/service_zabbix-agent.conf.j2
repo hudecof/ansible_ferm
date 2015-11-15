@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+domain $FERM_DOMAINS table filter chain INPUT {
+    interface $IF_MNGT proto tcp dport 10050 subchain "IN-ZABBIX" {
+        saddr (@ipfilter($HOST_ZABBIX_SERVER)) ACCEPT;
+    }
+}

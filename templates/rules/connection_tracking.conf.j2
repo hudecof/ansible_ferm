@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+domain $FERM_DOMAINS table filter chain (INPUT FORWARD) {
+    mod state state INVALID DROP;
+    mod state state (ESTABLISHED RELATED) ACCEPT;
+}
+
+domain $FERM_DOMAINS table filter chain (OUTPUT) {
+#    mod state state INVALID DROP;
+    mod state state (ESTABLISHED RELATED) ACCEPT;
+}

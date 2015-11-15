@@ -1,0 +1,18 @@
+---
+# defaults file for ferm
+
+ferm_pkg_state: present
+
+ferm_chain_input_policy: DROP
+ferm_chain_forward_policy: DROP
+ferm_chain_output_policy: ACCEPT
+
+ferm_net_mngt:
+  - 0.0.0.0/0
+  - ::0
+
+ferm_rules: []
+
+ferm_rules_directory: .
+
+ferm_domains: ['ip', 'ip6']

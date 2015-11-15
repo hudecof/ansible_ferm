@@ -1,0 +1,15 @@
+---
+ferm_packages:
+  - iptables
+  - iptables-ipv6
+  - ferm
+
+ferm_packages_remove: []
+
+ferm_directory: /etc/ferm
+
+ferm_services:
+  - iptables
+  - ip6tables
+
+ferm_service_enabled: yes

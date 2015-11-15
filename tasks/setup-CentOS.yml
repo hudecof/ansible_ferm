@@ -1,0 +1,17 @@
+---
+
+- name: "centos | install packages"
+  action: yum name={{ item }} state={{ ferm_pkg_state|default('present') }}
+  tags:
+    - ferm
+    - setup
+  with_items: ferm_packages
+
+- name: "centos | remove packages"
+  action: yum name={{ item }} state=absent
+  tags:
+    - ferm
+    - setup
+  with_items: ferm_packages_remove
+
+

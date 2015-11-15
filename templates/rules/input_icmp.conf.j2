@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+
+domain $FERM_DOMAINS table filter chain INPUT {
+    proto icmp @subchain "IN-ICMP" {
+        @if @eq($DOMAIN, ip) {
+            # https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol
+            icmp-type 0 ACCEPT mod comment comment "echo reply";
+        }
+        icmp-type echo-request ACCEPT;
+        @if @eq($DOMAIN, ip6) {
+            # https://en.wikipedia.org/wiki/Internet_Control_Message_Protocol_version_6
+            icmp-type 128 ACCEPT mod comment comment "Echo Request";
+            icmp-type 129 ACCEPT mod comment comment "Echo Reply";
+            icmp-type 135 ACCEPT mod comment comment "Neighbor Solicitation (NDP)";
+            icmp-type 136 ACCEPT mod comment comment "Neighbor Advertisement (NDP)";
+        }
+        DROP;
+    }
+}

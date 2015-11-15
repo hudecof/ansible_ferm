@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+
+@def $FERM_DOMAINS = ({{ ferm_domains|join(" ") }});
+
+@def $IF_MNGT = {{ ferm_if_mngt|default('eth0') }};
+@def $IF_APP = {{ ferm_if_app|default('eth0') }};
+@def $IF_DB = {{ ferm_if_db|default('eth0') }};
+
+@def $NET_MNGT = ({{ ferm_net_mngt|default(['0.0.0.0/0', '::0'])|join(" ") }});
+@def $NET_APP = ({{ ferm_net_app|default(['0.0.0.0/0', '::0'])|join(" ") }});
+
+{% set ferm_zabbix_server = [ "0.0.0.0", "::" ] %}
+{% if ansible_local.zabbix_agent.servers is defined %}
+{%    set ferm_zabbix_server = ansible_local.zabbix_agent.servers %}
+{% endif %}
+{% if zabbix_agent_config_server is defined %}
+{%    set ferm_zabbix_server = zabbix_agent_config_server %}
+{% endif %}
+@def $HOST_ZABBIX_SERVER = ({{ ferm_zabbix_server | join(" ") }});

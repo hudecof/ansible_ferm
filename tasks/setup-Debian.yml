@@ -1,0 +1,8 @@
+---
+- name: "debian | install packages"
+  action: apt name={{ item }} state={{ ferm_pkg_state|default('present') }}
+  tags:
+    - zabbix-agent
+    - setup
+  with_items: ferm_packages
+
