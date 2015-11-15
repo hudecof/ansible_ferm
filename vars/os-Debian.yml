@@ -2,6 +2,9 @@
 ferm_packages:
   - ferm
 
+ferm_packages_remove:
+  - ufw
+
 ferm_directory: /etc/ferm
 
 ferm_service: ferm
