@@ -7,4 +7,7 @@ ferm_packages_remove:
 
 ferm_directory: /etc/ferm
 
-ferm_service: ferm
+ferm_services:
+  - ferm
+
+ferm_service_enabled: yes
