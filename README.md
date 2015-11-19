@@ -1,31 +1,60 @@
-Role Name
+Ferm / iptables managment
 =========
 
-A brief description of the role goes here.
+This role manages the iptables using ferm script.
+
+As it's very hard to write generic iptables template, this role just moves **user defined** ferm confing snippets to the server and generate the ruleset using iptables.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+For Redhat/CentOS distributions **EPEL** si needed.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+There are only 2 varables needed to properly setup this role
+
+- `ferm_pkg_state`, defaults to `present`
+
+- `ferm_rules_directory`, defaults to `.`, means points to role template directory
+
+- `ferm_rules`, defaults to `[]` is the list of ferm rules to copy on the servers, without the **.conf.j2** suffix
+
+All the others variables in the are used in my sample rules sets. As you can see I use the power of the templating engine and the ferm engine to generate rules for **IPv4** and **IPv6**. The hard work to write the rules is still on you, but ypu have it fully **under control**.
+
+For example the `ferm variables` in your `group_vars/all` could be
+
+```
+ferm_rules_directory: ../../../files/ferm
+
+ferm_rules:
+  - vars
+  - default_rules
+  - connection_tracking
+  - input_icmp
+  - managment
+  - service_zabbix-agent
+```
+
+You should rewrite the `ferm_rules` in **group_var** or **host_vars** for each group or server as needed.
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+The ferm package is default in the Debian/Ubuntu based distributions.
+
+For EL you need EPEL to be enabled. There is numerous playbooks to do this stuff, so choose any. 
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: ferm
       roles:
-         - { role: username.rolename, x: 42 }
+         - hudecof.ferm
 
 License
 -------
@@ -35,4 +64,5 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Peter Hudec
+CNC, a.s.
