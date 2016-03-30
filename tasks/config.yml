@@ -19,7 +19,7 @@
 
 - name: "create rules files"
   action: template src={{ ferm_rules_directory }}/rules/{{ item }}.conf.j2 dest={{ ferm_directory|default("/etc/ferm") }}/generated.d/{{ item }}.conf owner=root group=root mode=0640
-  with_items: ferm_rules
+  with_items: '{{ ferm_rules }}'
   tags: [ ferm, config ]
   notify: 
     - "ferm generate rules"

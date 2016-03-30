@@ -5,13 +5,13 @@
   tags:
     - ferm
     - setup
-  with_items: ferm_packages
+  with_items: '{{ ferm_packages }}'
 
 - name: "centos | remove packages"
   action: yum name={{ item }} state=absent
   tags:
     - ferm
     - setup
-  with_items: ferm_packages_remove
+  with_items: '{{ ferm_packages_remove }}'
 
 
