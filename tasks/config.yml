@@ -1,18 +1,10 @@
 ---
 - name: "create conf from templates"
-  action: template src={{ item.src }} dest={{ ferm_directory|default("/etc/ferm") }}/{{ item.dest }} backup=yes owner=root group=root mode=0640
+  action: template src={{ item.src }} dest={{ ferm_directory|default("/etc/ferm") }}/{{ item.dest }} backup=yes owner=root group=root mode=0640 force={{ item.force }}
   with_items:
-    - { src: ferm.conf.j2, dest: ferm.conf }
-    - { src: ferm.generated.conf.j2, dest: ferm.generated.conf }
-  tags: [ ferm, config ]
-  notify: 
-    - "ferm generate rules"
-
-
-- name: "create placeholder files"
-  action: file path={{ ferm_directory|default("/etc/ferm") }}/{{ item.name }} owner=root group=root mode=0640 state=touch
-  with_items:
-    - { name: ferm.custom.conf }
+    - { src: ferm.conf.j2, dest: ferm.conf, force: true }
+    - { src: ferm.generated.conf.j2, dest: ferm.generated.conf, force: true }
+    - { src: ferm.custom.conf.j2, dest: ferm.custom.conf, force: false }
   tags: [ ferm, config ]
   notify: 
     - "ferm generate rules"
