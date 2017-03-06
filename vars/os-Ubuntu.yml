@@ -1,5 +1,10 @@
 ---
-ferm_packages:
+ferm_tasks:
+  - debian-packages.yml
+  - common-config.yml
+  - common-service.yml
+
+ferm_packages_install:
   - ferm
 
 ferm_packages_remove:

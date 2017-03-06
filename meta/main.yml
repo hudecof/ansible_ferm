@@ -4,23 +4,25 @@ galaxy_info:
   description:  ferm/iptables managment
   company: CNC, a.s.
   license: BSD
-  min_ansible_version: 1.7
+  min_ansible_version: 2.1
   platforms:
   - name: EL
     versions:
     - 6
     - 7
+    - 5
   - name: Ubuntu
     versions:
     - precise
     - trusty
+    - xenial
   - name: Debian
     versions:
+    - stretch
     - jessie
-    - squeeze
     - wheezy
+    - squeeze
   categories:
   - system
   - networking
 dependencies: []
-  

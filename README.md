@@ -1,17 +1,19 @@
-Ferm / iptables managment
-=========
+# Ferm / iptables managment
 
-This role manages the iptables using ferm script.
+- **CNC**: [![build status](https://source.cnc.sk/ansible/role-ferm/badges/master/build.svg)](https://source.cnc.sk/ansible/role-ferm/commits/master)
+- **Github**: [![Build Status](https://travis-ci.org/hudecof/ansible_ferm.svg?branch=master)](https://travis-ci.org/hudecof/ansible_ferm)
+-
+
+This role manages the iptables using [ferm](http://ferm.foo-projects.org) script.
 
 As it's very hard to write generic iptables template, this role just moves **user defined** ferm confing snippets to the server and generate the ruleset using iptables.
 
-Requirements
-------------
+## Requirements
 
-For Redhat/CentOS distributions **EPEL** si needed.
+- ansible: 2.1
+- Redhat/CentOS: EPEL will be enables
 
-Role Variables
---------------
+## Role Variables
 
 There are only 2 varables needed to properly setup this role
 
@@ -45,7 +47,7 @@ Dependencies
 
 The ferm package is default in the Debian/Ubuntu based distributions.
 
-For EL you need EPEL to be enabled. There is numerous playbooks to do this stuff, so choose any. 
+For EL you need EPEL to be enabled. There is numerous playbooks to do this stuff, so choose any.
 
 Example Playbook
 ----------------

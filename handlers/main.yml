@@ -1,15 +1,19 @@
 ---
 # handlers file for ferm
 - name: ferm generate rules
-  action: command ferm {{ferm_directory}}/ferm.conf
+  command:
+    ferm {{ferm_directory}}/ferm.conf
   notify:
     - ferm save rules ip4
     - ferm save rules ip6
+  when: not ferm_test
 
 - name: ferm save rules ip4
-  action: command service iptables save
+  command:
+    service iptables save
   when: "'ip' in ferm_domains and ansible_distribution in ('CentOS', 'RedHat')"
 
 - name: ferm save rules ip6
-  action: command service ip6tables save
+  command:
+    service ip6tables save
   when: "'ip6' in ferm_domains and ansible_distribution in ('CentOS', 'RedHat')"

@@ -1,5 +1,10 @@
 ---
-ferm_packages:
+ferm_tasks:
+  - centos-packages.yml
+  - common-config.yml
+  - common-service.yml
+
+ferm_packages_install:
   - iptables
   - iptables-services
   - iptables-utils
@@ -13,5 +18,5 @@ ferm_directory: /etc/ferm
 ferm_services:
   - iptables
   - ip6tables
- 
-ferm_service_enabled: yes 
+
+ferm_service_enabled: yes

@@ -1,0 +1,43 @@
+---
+
+- name: "common | config directory"
+  action: file path={{ ferm_directory | default("/etc/ferm") }}/{{ directory_item }} owner=root group=root mode=0750 state=directory
+  with_items:
+    - "generated.d"
+  loop_control:
+    loop_var: directory_item
+  tags:
+    - ferm
+    - ferm::config
+
+- name: "common | config templates"
+  template:
+    src: "{{ config_item.src }}"
+    dest: "{{ ferm_directory|default('/etc/ferm') }}/{{ config_item.dest }}"
+    backup: yes
+    owner: root
+    group: root
+    mode: 0640
+    force: "{{ config_item.force }}"
+  with_items:
+    - { src: ferm.conf.j2, dest: ferm.conf, force: true }
+    - { src: ferm.generated.conf.j2, dest: ferm.generated.conf, force: true }
+    - { src: ferm.custom.conf.j2, dest: ferm.custom.conf, force: false }
+  loop_control:
+    loop_var: config_item
+  tags:
+    - ferm
+    - ferm::config
+  notify:
+    - "ferm generate rules"
+
+- name: "common | rules files"
+  action: template src={{ ferm_rules_directory }}/rules/{{ rule_item }}.conf.j2 dest={{ ferm_directory|default("/etc/ferm") }}/generated.d/{{ rule_item }}.conf owner=root group=root mode=0640
+  with_items: '{{ ferm_rules }}'
+  tags:
+    - ferm
+    - ferm::config
+  loop_control:
+    loop_var: rule_item
+  notify:
+    - "ferm generate rules"
