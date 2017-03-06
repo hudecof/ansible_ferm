@@ -1,7 +1,0 @@
-debian-7 ansible_connection=docker
-debian-8 ansible_connection=docker
-debian-9 ansible_connection=docker
-centos-6 ansible_connection=docker
-centos-7 ansible_connection=docker
-ubuntu-14.04 ansible_connection=docker
-ubuntu-16.04 ansible_connection=docker
