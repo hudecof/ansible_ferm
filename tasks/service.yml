@@ -1,6 +1,0 @@
----
-
-- name: "ensure ferm rules will be loaded on boot"
-  service: name={{ item }} enabled={{ ferm_service_enabled }}
-  with_items: "{{ ferm_services }}"
-  tags: [ferm, service]

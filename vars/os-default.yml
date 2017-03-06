@@ -1,5 +1,3 @@
 ---
-
-ferm_packages: []
-
-ferm_services: []
+ferm_tasks:
+  - unsuported.yml

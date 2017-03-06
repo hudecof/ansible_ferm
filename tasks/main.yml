@@ -1,7 +1,7 @@
 ---
 # tasks file for ferm
 
-- name: "common | set os specific variables"
+- name: "set os specific variables"
   include_vars: "{{ item }}"
   with_first_found:
    - "os-{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
@@ -9,26 +9,11 @@
    - "os-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
    - "os-{{ ansible_distribution }}.yml"
    - "os-default.yml"
-  tags:
-    - ferm
-    - setup
-    - config
-    - service
+  tags: ferm
 
-# Debian specific tasks
-- include: setup-Debian.yml
-  when: ansible_distribution in ('Debian', 'Ubuntu')
-  tags: [ferm, setup]
-
-# CentOS  specific tasks
-- include: setup-CentOS.yml
-  when: ansible_distribution in ('CentOS', 'RedHat')
-  tags: [ferm, setup]
-
-# common setup tasks
-- include: setup-common.yml
-  tags: [ferm, setup]
-
-- include: config.yml
-
-- include: service.yml
+- name: "run os specific tasks"
+  include: "{{ task_item }}"
+  with_items: "{{ ferm_tasks }}"
+  loop_control:
+    loop_var: task_item
+  tags: ferm

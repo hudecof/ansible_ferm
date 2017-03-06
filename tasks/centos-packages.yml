@@ -1,0 +1,30 @@
+---
+- name: "centos | packages epel"
+  yum:
+    name: "epel-release"
+    state: present
+  tags:
+    ferm
+    ferm::install
+
+- name: "centos | packages remove"
+  yum:
+    name: "{{ package_item }}"
+    state: absent
+  with_items: '{{ ferm_packages_remove }}'
+  loop_control:
+    loop_var: package_item
+  tags:
+    ferm
+    ferm::install
+
+- name: "centos | packages install"
+  yum:
+    name: "{{ package_item }}"
+    state: present
+  with_items: '{{ ferm_packages_install }}'
+  loop_control:
+    loop_var: package_item
+  tags:
+    ferm
+    ferm::install

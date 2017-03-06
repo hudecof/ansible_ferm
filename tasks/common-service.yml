@@ -1,0 +1,14 @@
+---
+
+- name: "common | service"
+  service:
+    name: "{{ service_item }}"
+    enabled: "{{ ferm_service_enabled }}"
+    state: "{{ ferm_service_state }}"
+  with_items: "{{ ferm_services }}"
+  loop_control:
+    loop_var: service_item
+  when: not ferm_test
+  tags:
+    - ferm
+    - ferm::service

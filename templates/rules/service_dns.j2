@@ -1,5 +1,0 @@
-{{ ansible_managed }}
-
-domain $FERM_DOMAINS table filter chain INPUT {
-    interface $IF_APP proto (udp tcp) dport 53 ACCEPT;
-}

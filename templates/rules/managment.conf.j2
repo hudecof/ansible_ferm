@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 
 domain $FERM_DOMAINS table filter chain INPUT {
-    interface $IF_MNGT proto tcp dport 22 subchain "IN-MNGT" {
+    proto tcp dport 22 subchain "IN-MNGT" {
         saddr (@ipfilter($NET_MNGT)) ACCEPT;
     }
 }
