@@ -12,8 +12,12 @@
   command:
     service iptables save
   when: "'ip' in ferm_domains and ansible_distribution in ('CentOS', 'RedHat')"
+  args:
+    warn: false
 
 - name: ferm save rules ip6
   command:
     service ip6tables save
   when: "'ip6' in ferm_domains and ansible_distribution in ('CentOS', 'RedHat')"
+  args:
+    warn: false
