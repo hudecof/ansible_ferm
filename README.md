@@ -15,18 +15,20 @@ As it's very hard to write generic iptables template, this role just moves **use
 
 ## Role Variables
 
-There are only 2 varables needed to properly setup this role
+There are only 3 variables needed to properly setup this role
 
-- `ferm_pkg_state`, defaults to `present`
+- `ferm_service_state`, defaults to **started** defined the service state
+- `ferm_service_enabled`, defaults to **yes**, defined wheather the service should start on boot
+- `ferm_test`, defaults to **false** is used during the testing in docker, you do not need to modify it.
+- `ferm_rules` is list of ferm rules to load. The filaname shoud have suffix **.conf.j2**. Defaults is pointgto provided rules which will allow only incomming ICMP and SSH.
+- `ferm_rules_directory` is point do role directory. To use your own rule templates you need to modify this.
 
-- `ferm_rules_directory`, defaults to `.`, means points to role template directory
 
-- `ferm_rules`, defaults to `[]` is the list of ferm rules to copy on the servers, without the **.conf.j2** suffix
+All the others variables are used in my sample rules sets. As you can see I use the power of the templating engine and the ferm engine to generate rules for **IPv4** and **IPv6**. The hard work to write the rules is still on you, but ypu have it fully **under control**.
 
-All the others variables in the are used in my sample rules sets. As you can see I use the power of the templating engine and the ferm engine to generate rules for **IPv4** and **IPv6**. The hard work to write the rules is still on you, but ypu have it fully **under control**.
+## Example
 
-For example the `ferm variables` in your `group_vars/all` could be
-
+### host/group variables
 ```
 ferm_rules_directory: ../../../files/ferm
 
@@ -38,25 +40,28 @@ ferm_rules:
   - managment
   - service_zabbix-agent
 ```
+In this case you should create following files
+
+- `../../../files/ferm/rules/vars.conf.j2`
+- `../../../files/ferm/rules/default_rules.conf.j2`
+- ...
 
 You should rewrite the `ferm_rules` in **group_var** or **host_vars** for each group or server as needed.
 
 
-Dependencies
-------------
+### playbook
 
-The ferm package is default in the Debian/Ubuntu based distributions.
+For example the `ferm variables` in your `group_vars/all` could be
 
-For EL you need EPEL to be enabled. There is numerous playbooks to do this stuff, so choose any.
+```
+- hosts: ferm
+  roles:
+     - hudecof.ferm
+```
 
-Example Playbook
-----------------
+## Dependencies
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: ferm
-      roles:
-         - hudecof.ferm
+None
 
 License
 -------
