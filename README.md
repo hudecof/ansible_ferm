@@ -2,7 +2,7 @@
 
 - **CNC**: [![build status](https://source.cnc.sk/ansible/role-ferm/badges/master/build.svg)](https://source.cnc.sk/ansible/role-ferm/commits/master)
 - **Github**: [![Build Status](https://travis-ci.org/hudecof/ansible_ferm.svg?branch=master)](https://travis-ci.org/hudecof/ansible_ferm)
--
+
 
 This role manages the iptables using [ferm](http://ferm.foo-projects.org) script.
 
