@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+
+@def $FERM_DOMAINS = ({{ ferm_domains|default(['ip', 'ip6'])|join(" ") }});
+@def $NET_MNGT = ({{ ferm_net_mngt|default(['0.0.0.0/0', '::0'])|join(" ") }});

@@ -10,6 +10,7 @@ ferm_net_mngt:
   - ::0
 
 ferm_rules:
+  - vars
   - default_rules
   - connection_tracking
   - input_icmp
