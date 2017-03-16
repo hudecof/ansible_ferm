@@ -1,11 +1,4 @@
 ---
-- name: "centos | packages epel"
-  yum:
-    name: "epel-release"
-    state: present
-  tags:
-    ferm
-    ferm::install
 
 - name: "centos | packages remove"
   yum:
