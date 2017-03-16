@@ -7,7 +7,6 @@ ferm_tasks:
 ferm_packages_install:
   - iptables
   - iptables-services
-  - iptables-utils
   - ferm
 
 ferm_packages_remove:
