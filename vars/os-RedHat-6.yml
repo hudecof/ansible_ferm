@@ -1,0 +1,21 @@
+---
+ferm_tasks:
+  - centos-packages.yml
+  - common-config.yml
+  - common-service.yml
+
+ferm_packages_install:
+  - epel-release
+  - iptables
+  - iptables-ipv6
+  - ferm
+
+ferm_packages_remove: []
+
+ferm_directory: /etc/ferm
+
+ferm_services:
+  - iptables
+  - ip6tables
+
+ferm_service_enabled: yes
