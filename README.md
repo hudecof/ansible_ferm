@@ -11,7 +11,7 @@ As it's very hard to write generic iptables template, this role just moves **use
 ## Requirements
 
 - ansible: 2.1
-- Redhat/CentOS: EPEL will be enables
+- Redhat/CentOS: EPEL
 
 ## Role Variables
 
