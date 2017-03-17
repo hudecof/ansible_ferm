@@ -26,4 +26,4 @@ galaxy_info:
   - system
   - networking
 dependencies:
-  - { role: hudecof.packages, packages_centos_epel: true }
+  - { role: hudecof.packages, packages_centos_epel: true, packages_ubuntu_universe: true }
