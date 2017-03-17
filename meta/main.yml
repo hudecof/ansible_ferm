@@ -25,4 +25,5 @@ galaxy_info:
   categories:
   - system
   - networking
-dependencies: []
+dependencies:
+  - { role: hudecof.packages, packages_centos_epel: true }
