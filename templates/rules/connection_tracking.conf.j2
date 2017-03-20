@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 domain $FERM_DOMAINS table filter chain (INPUT FORWARD) {
     mod state state INVALID DROP;

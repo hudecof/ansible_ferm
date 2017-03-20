@@ -1,4 +1,4 @@
-# {{ ansible_managed }}
+{{ ansible_managed | comment }}
 
 domain $FERM_DOMAINS table filter chain INPUT {
     proto tcp dport 22 subchain "IN-MNGT" {

@@ -1,3 +1,5 @@
+{{ ansible_managed | comment }}
+
 domain $FERM_DOMAINS table filter {
     chain INPUT policy {{ ferm_chain_input_policy | default("ACCEPT") }};
     chain FORWARD policy {{ ferm_chain_forward_policy | default("DROP") }};
