@@ -1,16 +1,9 @@
 ---
-ferm_tasks:
-  - centos-packages.yml
-  - common-config.yml
-  - common-service.yml
-
-ferm_packages_install:
-  - iptables
-  - iptables-services
-  - ferm
-
-ferm_packages_remove:
-  - firewalld
+ferm_packages:
+  - {'name': 'firewalld', 'state': 'absent'}
+  - {'name': 'iptables', 'state': 'present'}
+  - {'name': 'iptables-ipv6', 'state': 'present'}
+  - {'name': 'ferm', 'state': 'present'}
 
 ferm_directory: /etc/ferm
 

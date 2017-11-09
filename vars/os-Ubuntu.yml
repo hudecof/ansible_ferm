@@ -1,14 +1,8 @@
 ---
-ferm_tasks:
-  - debian-packages.yml
-  - common-config.yml
-  - common-service.yml
 
-ferm_packages_install:
-  - ferm
-
-ferm_packages_remove:
-  - ufw
+ferm_packages:
+  - {'name': 'ufw', 'state': 'absent'}
+  - {'name': 'ferm', 'state': 'present'}
 
 ferm_directory: /etc/ferm
 

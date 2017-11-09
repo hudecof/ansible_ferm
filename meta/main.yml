@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Peter Hudec
-  description:  ferm/iptables managment
+  description: ferm/iptables managment
   company: CNC, a.s.
   license: BSD
   min_ansible_version: 2.1
@@ -25,5 +25,4 @@ galaxy_info:
   categories:
   - system
   - networking
-dependencies:
-  - { role: hudecof.packages, packages_centos_epel: true, packages_ubuntu_universe: true }
+dependencies: []

@@ -1,7 +1,0 @@
----
-
-- name: "ferm directory"
-  action: file path={{ ferm_directory | default("/etc/ferm") }}/{{ item }} owner=root group=root mode=0750 state=directory
-  with_items:
-    - "generated.d"
-  tags: [ ferm, setup]

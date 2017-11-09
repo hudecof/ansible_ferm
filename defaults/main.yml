@@ -20,7 +20,6 @@ ferm_rules_directory: .
 
 ferm_domains: ['ip', 'ip6']
 
-
 ferm_service_state: 'started'
 ferm_service_enabled: 'yes'
 

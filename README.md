@@ -12,6 +12,7 @@ As it's very hard to write generic iptables template, this role just moves **use
 
 - ansible: 2.1
 - Redhat/CentOS: EPEL
+- Ubuntu: multiverse repository
 
 ## Role Variables
 
@@ -30,7 +31,7 @@ All the others variables are used in my sample rules sets. As you can see I use 
 
 ### host/group variables
 ```
-ferm_rules_directory: ../../../files/ferm
+ferm_rules_directory: {{ playbook_dir }}/files/ferm
 
 ferm_rules:
   - vars
@@ -42,9 +43,9 @@ ferm_rules:
 ```
 In this case you should create following files
 
-- `../../../files/ferm/rules/vars.conf.j2`
-- `../../../files/ferm/rules/default_rules.conf.j2`
-- ...
+- `{{ playbook_dir }}/files/ferm/rules/vars.conf.j2`
+- `{{ playbook_dir }}/files/ferm/rules/default_rules.conf.j2`
+- `...`
 
 You should rewrite the `ferm_rules` in **group_var** or **host_vars** for each group or server as needed.
 

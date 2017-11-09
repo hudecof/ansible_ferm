@@ -9,6 +9,3 @@
   loop_control:
     loop_var: service_item
   when: not ferm_test
-  tags:
-    - ferm
-    - ferm::service
