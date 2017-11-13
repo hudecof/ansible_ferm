@@ -2,7 +2,7 @@
 # handlers file for ferm
 - name: ferm generate rules
   command:
-    ferm {{ferm_directory}}/ferm.conf
+    ferm {{ ferm_directory|default('/etc/ferm') }}/ferm.conf
   notify:
     - ferm save rules ip4
     - ferm save rules ip6

@@ -1,6 +1,8 @@
 ---
 # defaults file for ferm
 
+ferm_directory: /etc/ferm
+
 ferm_chain_input_policy: DROP
 ferm_chain_forward_policy: DROP
 ferm_chain_output_policy: ACCEPT
