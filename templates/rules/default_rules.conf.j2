@@ -4,4 +4,6 @@ domain $FERM_DOMAINS table filter {
     chain INPUT policy {{ ferm_chain_input_policy | default("ACCEPT") }};
     chain FORWARD policy {{ ferm_chain_forward_policy | default("DROP") }};
     chain OUTPUT policy {{ ferm_chain_output_policy | default("ACCEPT") }};
+
+    chain INPUT interface lo ACCEPT;
 }
