@@ -1,28 +1,24 @@
 ---
 galaxy_info:
+  role_name: ferm
   author: Peter Hudec
   description: ferm/iptables managment
-  company: CNC, a.s.
   license: BSD
   min_ansible_version: 2.1
   platforms:
-  - name: EL
-    versions:
-    - 6
-    - 7
-    - 5
-  - name: Ubuntu
-    versions:
-    - precise
-    - trusty
-    - xenial
-  - name: Debian
-    versions:
-    - stretch
-    - jessie
-    - wheezy
-    - squeeze
-  categories:
-  - system
-  - networking
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Ubuntu
+      versions:
+        - xenial
+        - bionic
+    - name: Debian
+      versions:
+        - stretch
+        - jessie
+  galaxy_tags:
+    - system
+    - networking
 dependencies: []
