@@ -6,6 +6,5 @@ domain $FERM_DOMAINS table filter chain (INPUT FORWARD) {
 }
 
 domain $FERM_DOMAINS table filter chain (OUTPUT) {
-#    mod state state INVALID DROP;
     mod state state (ESTABLISHED RELATED) ACCEPT;
 }
