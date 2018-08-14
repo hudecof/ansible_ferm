@@ -1,12 +1,11 @@
 # Ferm / iptables managment
 
-- **CNC**: [![build status](https://source.cnc.sk/ansible/role-ferm/badges/master/build.svg)](https://source.cnc.sk/ansible/role-ferm/commits/master)
 - **Github**: [![Build Status](https://travis-ci.org/hudecof/ansible_ferm.svg?branch=master)](https://travis-ci.org/hudecof/ansible_ferm)
 
 
 This role manages the iptables using [ferm](http://ferm.foo-projects.org) script.
 
-As it's very hard to write generic iptables template, this role just moves **user defined** ferm confing snippets to the server and generate the ruleset using iptables.
+As it's very hard to write generic iptables template, this role just moves **user defined** ferm config snippets to the server and generate the ruleset using iptables.
 
 ## Requirements
 
@@ -16,16 +15,25 @@ As it's very hard to write generic iptables template, this role just moves **use
 
 ## Role Variables
 
-There are only 3 variables needed to properly setup this role
+### OS based variables
 
-- `ferm_service_state`, defaults to **started** defined the service state
-- `ferm_service_enabled`, defaults to **yes**, defined wheather the service should start on boot
-- `ferm_test`, defaults to **false** is used during the testing in docker, you do not need to modify it.
-- `ferm_rules` is list of ferm rules to load. The filaname shoud have suffix **.conf.j2**. Defaults is pointgto provided rules which will allow only incomming ICMP and SSH.
-- `ferm_rules_directory` is point do role directory. To use your own rule templates you need to modify this.
+Some variables are based on OS. These variables are locaten in `vars/os-<OS>.yml` files.
+
+### Generic Variables
+
+- `ferm_directory`: ferm configuration directory, defaults to **/etc/ferm**
+- `ferm_service_state`: if the ferm should be started
+- `ferm_service_enabled`: if the ferm should be enabled in boot sequence
+
+### Firewal rules
+
+- `ferm_rules_directory`: where should I look for the firewall rules files, default to playbook templates directory
+- `ferm_net_mngt`: list of management networks, defaultd allow any
+- `ferm_domains`: to which ip version generate the rules, defaults **IPv4** and **IPv6**
+- `ferm_rules`: list of rules to apply. defualt allow only SSH and ICMP
 
 
-All the others variables are used in my sample rules sets. As you can see I use the power of the templating engine and the ferm engine to generate rules for **IPv4** and **IPv6**. The hard work to write the rules is still on you, but ypu have it fully **under control**.
+Power of the templating engine and the ferm engine to generate rules for **IPv4** and **IPv6**. The hard work to write the rules is still on you, but you have it fully **under control**.
 
 ## Example
 
@@ -64,13 +72,10 @@ For example the `ferm variables` in your `group_vars/all` could be
 
 None
 
-License
--------
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
 Peter Hudec
-CNC, a.s.
